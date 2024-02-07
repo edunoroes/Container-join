@@ -1,95 +1,125 @@
-import Image from "next/image";
+"use client";
+
 import styles from "./page.module.css";
+import { ContainerContent, GridContainers } from "../app/style";
+import { useState } from "react";
 
 export default function Home() {
+  const tempContentArray = [
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat libero sunt voluptates sint nesciunt eligendi architecto amet quibusdam ea, alias ducimus atque obcaecati beatae aliquam, a asperiores laudantium accusamus iste.",
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat libero sunt voluptates sint nesciunt eligendi architecto amet quibusdam ea, alias ducimus atque obcaecati beatae aliquam, a asperiores laudantium accusamus iste.",
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat libero sunt voluptates sint nesciunt eligendi architecto amet quibusdam ea, alias ducimus atque obcaecati beatae aliquam, a asperiores laudantium accusamus iste.",
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat libero sunt voluptates sint nesciunt eligendi architecto amet quibusdam ea, alias ducimus atque obcaecati beatae aliquam, a asperiores laudantium accusamus iste.",
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat libero sunt voluptates sint nesciunt eligendi architecto amet quibusdam ea, alias ducimus atque obcaecati beatae aliquam, a asperiores laudantium accusamus iste.",
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat libero sunt voluptates sint nesciunt eligendi architecto amet quibusdam ea, alias ducimus atque obcaecati beatae aliquam, a asperiores laudantium accusamus iste.",
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat libero sunt voluptates sint nesciunt eligendi architecto amet quibusdam ea, alias ducimus atque obcaecati beatae aliquam, a asperiores laudantium accusamus iste.",
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat libero sunt voluptates sint nesciunt eligendi architecto amet quibusdam ea, alias ducimus atque obcaecati beatae aliquam, a asperiores laudantium accusamus iste.",
+    "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat libero sunt voluptates sint nesciunt eligendi architecto amet quibusdam ea, alias ducimus atque obcaecati beatae aliquam, a asperiores laudantium accusamus iste.",
+  ];
+
+  const [scenarioSelected, setScenarioSelected] = useState<string>("0");
+
   return (
     <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+      <select
+        name="optionsGrid"
+        id="optionsGrid"
+        onChange={(v) => setScenarioSelected(v.target.value)}
+      >
+        <option value={0}>default</option>
+        <option value={1}>scenario 1</option>
+        <option value={2}>scenario 2</option>
+        <option value={3}>scenario 3</option>
+        <option value={4}>scenario 4</option>
+      </select>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+      <GridContainers scenarioSelected={scenarioSelected}>
+        {tempContentArray.map((item: string, index) => {
+          if (scenarioSelected === "1") {
+            if (index === 0) {
+              return (
+                <ContainerContent key={index} className={`container-${index}`}>
+                  {tempContentArray[0]} {tempContentArray[1]}
+                </ContainerContent>
+              );
+            }
+            if (index === 1) {
+              return;
+            }
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+            return (
+              <ContainerContent key={index} className={`container-${index}`}>
+                {item}
+              </ContainerContent>
+            );
+          }
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+          if (scenarioSelected === "2") {
+            if (index === 0) {
+              return (
+                <ContainerContent key={index} className={`container-${index}`}>
+                  {tempContentArray[0]} {tempContentArray[1]}{" "}
+                  {tempContentArray[1]}
+                </ContainerContent>
+              );
+            }
+            if (index === 1 || index === 2) {
+              return;
+            }
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
+            return (
+              <ContainerContent key={index} className={`container-${index}`}>
+                {item}
+              </ContainerContent>
+            );
+          }
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+          if (scenarioSelected === "3") {
+            if (index === 0) {
+              return (
+                <ContainerContent key={index} className={`container-${index}`}>
+                  {tempContentArray[0]} {tempContentArray[3]}{" "}
+                </ContainerContent>
+              );
+            }
+            if (index === 3) {
+              return;
+            }
+
+            return (
+              <ContainerContent key={index} className={`container-${index}`}>
+                {item}
+              </ContainerContent>
+            );
+          }
+
+          if (scenarioSelected === "4") {
+            if (index === 0) {
+              return (
+                <ContainerContent key={index} className={`container-${index}`}>
+                  {tempContentArray[0]} {tempContentArray[3]}{" "}
+                  {tempContentArray[6]}
+                </ContainerContent>
+              );
+            }
+            if (index === 3 || index === 6) {
+              return;
+            }
+
+            return (
+              <ContainerContent key={index} className={`container-${index}`}>
+                {item}
+              </ContainerContent>
+            );
+          }
+
+          return (
+            <ContainerContent key={index} className={`container-${index}`}>
+              {item}
+            </ContainerContent>
+          );
+        })}
+      </GridContainers>
     </main>
   );
 }
